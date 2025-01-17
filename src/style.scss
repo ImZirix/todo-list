@@ -1,0 +1,207 @@
+@use '/src/scss/variables';
+@use '/src/scss/fonts';
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: Poppins;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: variables.$background;
+}
+
+.taskContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 20px;
+    gap: 10px;
+    position: relative;
+    div {
+        width: 350px;
+        height: 250px;
+        background-color: variables.$secondary;
+        border-radius: 10px;
+        padding: 10px;
+        color: variables.$text;
+        font-size: 18px;
+        box-shadow: 0 0 10px 5px rgba(78, 77, 77, 0.294);
+    }
+}
+
+.newTaskBtn {
+    width: 500px;
+    height: 100px;
+    border: dashed 2px;
+    background-color: variables.$primary;
+    transition: 0.3s ease;
+    border-radius: 10px;
+    outline: none;
+    font-size: 18px;
+    margin-top: 10px;
+    order: -1;
+    &:hover {
+        transform: scale(1.1);
+    }
+}
+
+
+.formWindow {
+    position: fixed;
+    width: 500px;
+    height: 500px;
+    background-color: variables.$primary;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: 1s ease;
+    animation: SlideIn 1s ease forwards;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    border-radius: 10px;
+    align-items: center;
+    z-index: 100;
+    input, select, textarea {
+        width: 90%;  
+        height: 40px; 
+        outline: none;  
+        border: none; 
+        background-color: variables.$secondary; 
+        color: variables.$text; 
+        border-radius: 10px 5px 0 0; 
+        font-size: 18px;
+        padding: 10px;
+        animation: SlideFromLeft 1s ease forwards;
+    }
+    textarea {
+        resize: none;
+    }
+    input::placeholder, textarea::placeholder {
+        color: variables.$text;
+    }
+    
+    :nth-child(2) {
+        height: 150px;
+       // border-radius: 0;
+    }
+    :first-child {
+        margin-top: 20px;
+    }
+    :nth-child(3) {
+        //border-radius: 0;
+    }
+    :nth-child(4) {
+        padding: 5px;
+        //border-radius: 0;
+    }
+    > :first-child ~ *{
+        border-radius: 0;
+    }
+    button {
+        width: 100px;
+        height: 35px;
+        border: none;
+        color: variables.$text;
+        background-color: variables.$background;
+        animation: SlideFromBotton 1s ease forwards;
+        transition: 0.3s ease;
+        border-radius: 10px;
+        &:hover {
+            scale: 1.1;
+        }
+    }
+    &:focus {
+        outline: none;
+    }
+}
+
+@keyframes SlideIn {
+    from {
+        opacity: 0;
+        top: 40%;
+    }
+
+    to {
+        top: 50%;
+        opacity: 1;
+    }
+}
+
+@keyframes SlideFromLeft {
+    from {
+        transform: translate(-50%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translate(0);
+        opacity: 1;
+    }
+}
+
+@keyframes SlideFromBotton {
+    from {
+        transform: translateY(100%);
+        border-radius: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        border-radius: 5px;
+    }
+}
+
+
+
+.removeTask {
+    height: 40px;
+    width: 40px;
+    font-size: 25px;
+    background-color: variables.$primary;
+    border: none;
+    border-radius: 100%;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    transition: .2s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    &:hover {
+        scale: 1.1;
+        background-color: rgb(255, 0, 0);
+        
+    }
+
+    &::after {
+        position: absolute;
+        content: "\d7";
+        font-size: 40px; 
+        color: #fff;
+        line-height: 100px;
+        text-align: center;
+    }
+}
+
+.taskContainer > * {
+    position: relative;
+}
+
+.taskElement {
+    display: flex;
+    flex-direction: column;
+    .tik {
+        order: -1;
+        width: 20px;
+    }
+}
